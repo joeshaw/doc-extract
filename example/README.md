@@ -5,7 +5,7 @@ which has [API Blueprint](https://apiblueprint.org) definitions for a
 RESTish HTTP API in its comments.
 
 Using doc-extract, we can extract these comments into an API Blueprint
-file:
+file ([example.apib](example.apib)):
 
     doc-extract . example.apib
 
@@ -15,4 +15,4 @@ render that to a nice HTML file.
 
     docker run --rm -t -v $(pwd):/docs humangeo/aglio -i /docs/example.apib -o /docs/example.html
 
-[Viola!](https://htmlviewer.github.io/?https://raw.githubusercontent.com/joeshaw/doc-extract/master/example/example.html)
+[Viola!](https://htmlpreview.github.io/?https://raw.githubusercontent.com/joeshaw/doc-extract/master/example/example.html)
