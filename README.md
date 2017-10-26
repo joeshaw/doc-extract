@@ -42,6 +42,11 @@ This predictable ordering allows you to add, for instance, a header to
 the output file by adding it to one of the special cases that are
 processed first.
 
+## Example ##
+
+In the `example` directory is an [example using API
+Blueprint](example/README.md).
+
 ## Motivation ##
 
 This tool is especially useful for extracting documentation from

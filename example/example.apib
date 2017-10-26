@@ -1,0 +1,33 @@
+FORMAT: 1A
+
+# Sums and Averages
+
+This API computes sums and averages (with standard deviation).
+
+## POST /sum
++ Request (application/json)
+
+        {
+            "values": [ 10, 20, 30 ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "sum": 60
+        }
+
+## POST /average
++ Request (application/json)
+
+        {
+            "values": [ 10, 20, 30 ]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "average": 20,
+            "stddev": 10
+        }
+
