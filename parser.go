@@ -38,15 +38,16 @@ func sortedFiles(pkg *ast.Package) []file {
 		files = append(files, file{file: f, name: path.Base(name)})
 	}
 
-	// Sort files passed in according to this heuristic:
-	// 1. file with name == package name
-	// 2. file with name "doc.go"
-	// 3. lexicographic order
+	// Sort files in lexicographic order, except give priority to doc.go
 	sort.Slice(files, func(i, j int) bool {
 		ni, nj := files[i].name, files[j].name
 
 		if ni == "doc.go" {
 			return true
+		}
+
+		if nj == "doc.go" {
+			return false
 		}
 
 		return ni < nj
