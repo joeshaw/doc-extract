@@ -18,7 +18,7 @@ func TestSorter(t *testing.T) {
 		t.Fatalf("Expected len(pkgs) == 1, got %d", len(pkgs))
 	}
 
-	expected := []string{"testdata.go", "doc.go", "a.go", "z.go"}
+	expected := []string{"doc.go", "a.go", "testdata.go", "z.go"}
 	sorted := sortedFiles(pkgs["testdata"])
 
 	if len(sorted) != len(expected) {
@@ -76,9 +76,9 @@ func TestParsePackage(t *testing.T) {
 	comments := extractPackageComments(pkgs["testdata"])
 
 	expected := []string{
-		"A comment inside testdata.go\n",
 		"More text, in doc.go\n",
 		"Here's a comment in a.go\n",
+		"A comment inside testdata.go\n",
 		"An interesting\nmulti-line\ncomment inside\nz.go\n",
 	}
 

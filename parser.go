@@ -2,15 +2,16 @@
 // tagged with the special token "+extract" in the first line.
 //
 // Usage: doc-extract <source dir> <output file>
-// where "source dir" is a directory containing Go source files ending
+//
+// "source dir" is a directory containing Go source files ending
 // in .go, and "output file" is the file to write.
 //
-// Source files are processed in a predictable order: (1) a filename
-// matching the package name (for instance, main.go in a main
-// package); (2) doc.go; and (3) lexicographic order.  Comments within
-// a file are extracted in the order they appear.  This predictable
-// order allows you to add, for instance, a header to the output file
-// by adding it to one of the special cases that are processed first.
+
+// Source files are processed in lexicographic order, except that a file
+// named doc.go is always processed first.  Comments within a file are
+// extracted in the order they appear.  This predictable order allows
+// you to add, for instance, a header to the output file by adding it to
+// doc.go.
 package main
 
 import (
@@ -43,34 +44,12 @@ func sortedFiles(pkg *ast.Package) []file {
 	// 3. lexicographic order
 	sort.Slice(files, func(i, j int) bool {
 		ni, nj := files[i].name, files[j].name
-		eponym := pkg.Name + ".go"
 
-		switch ni {
-		case eponym:
-			switch nj {
-			case eponym:
-				return false
-			default:
-				return true
-			}
-
-		case "doc.go":
-			switch nj {
-			case eponym, "doc.go":
-				return false
-			default:
-				return true
-			}
-
-		default:
-			switch nj {
-			case eponym, "doc.go":
-				return false
-			default:
-				return ni < nj
-			}
+		if ni == "doc.go" {
+			return true
 		}
 
+		return ni < nj
 	})
 
 	return files

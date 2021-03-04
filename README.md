@@ -1,15 +1,21 @@
-# doc-extract #
+# doc-extract
 
 doc-extract is a tool for extracting specially tagged comments in Go
 source code.  Tagged comments start with a blank line containing
 `+extract`.  Both grouped line comments (`//`) and block comments (`/*
 */`) are supported.
 
-## Installation ##
+## Installation
+
+Go 1.16 and later:
+
+    go install github.com/joeshaw/doc-extract@latest
+
+Go 1.15 and earlier:
 
     go get -u github.com/joeshaw/doc-extract
 
-## Usage ##
+## Usage
 
 Simply tag comments in your Go source code with `+extract` as the first
 line of your comment.  For example,
@@ -29,25 +35,19 @@ Go source files and an output file:
 
     doc-extract ./example example.txt
 
-Source files are processed in a predictable order:
-
-1. A file name matching the package name (for instance, `main.go` in a
-`main` package)
-2. `doc.go`
-3. lexicographic order
-
-Comments within a file are processed in the order they appear.
+Source files are processed in lexicographic order, _except_ that a file
+named `doc.go` gets highest priority.  Comments within a file are
+processed in the order they appear.
 
 This predictable ordering allows you to add, for instance, a header to
-the output file by adding it to one of the special cases that are
-processed first.
+the output file by adding it to `doc.go`.
 
-## Example ##
+## Example
 
 In the `example` directory is an [example using API
 Blueprint](example/README.md).
 
-## Motivation ##
+## Motivation
 
 This tool is especially useful for extracting documentation from
 comments when GoDoc isn't appropriate.  For example, documentation for
@@ -62,11 +62,11 @@ extension.
 This replaces my now-deprecated
 [rst-extract](https://github.com/joeshaw/rst-extract) tool.
 
-## Contributing ##
+## Contributing
 
 Issues and pull requests are welcome.  When filing a PR, please make
 sure the code has been run through `gofmt` and that the tests pass.
 
-## License ##
+## License
 
 MIT
