@@ -27,7 +27,7 @@ package main
 // API Documentation
 // =================
 //
-// (FIXME: add documentation)
+// (TODO: add documentation)
 ```
 
 Then run the `doc-extract` command, providing it with a directory of
@@ -44,7 +44,7 @@ the output file by adding it to `doc.go`.
 
 ## Example
 
-In the `example` directory is an [example using API
+The `example` directory contains an [example using API
 Blueprint](example/README.md).
 
 ## Motivation
@@ -56,7 +56,7 @@ Blueprint](https://apiblueprint.org/) for processing by
 [Snowboard](https://github.com/bukalapak/snowboard).  Or it could be
 used to pull ReStructured Text (RST) for processing by
 [Sphinx](http://sphinx-doc.org/) and the
-[httpdomain](https://pythonhosted.org/sphinxcontrib-httpdomain/)
+[httpdomain](https://sphinxcontrib-httpdomain.readthedocs.io/en/stable/)
 extension.
 
 This replaces my now-deprecated
